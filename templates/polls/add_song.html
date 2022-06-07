@@ -1,0 +1,14 @@
+{% if song_list %}
+    {% for song in song_list %}
+        {{ song }}<br>
+    {% endfor %}
+{% endif %}
+<form action="{% url 'add_song' %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>add song</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <input type="text" name="title">
+</fieldset>
+<input type="submit">
+</form>

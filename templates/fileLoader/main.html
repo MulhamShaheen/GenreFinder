@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&family=Rowdies:wght@700&display=swap"
+          rel="stylesheet">
+    {% load static %}
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fileLoader/css/bootstrap.min.css' %}">
+    <link rel="script" type="text/plain" href="{% static 'fileLoader/js/bootstrap.min.js' %}">
+
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'fileLoader/style.css' %}?311">
+    <title>Genre Prediction - Main</title>
+</head>
+<body style="background-image: url({% static 'fileLoader/background2.png' %}); ">
+<header>
+    <div class="header d-flex justify-content-center p-5">
+        <h1>Welcome</h1>
+    </div>
+</header>
+<div class="container-sm d-flex justify-content-center align-items-center main flex-column gap-5 mt-5">
+    <div class="title border-bottom border-dark">
+        <h3>Genre prediction Service</h3>
+    </div>
+    <div class="form">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <input type="file" name="uploaded_file" multiple id="file"/>
+                <button class="btn-block button" type="submit">Upload</button>
+            </div>
+        </form>
+
+    </div>
+    <div class="output">
+        {% if file_name %}
+            <div class="output-prediction">
+                <p>Uploaded File: {{ file_name }}</p>
+            </div>
+        {% endif %}
+
+        {% if test %}
+            <div class="output-prediction">
+                <p>Prediction: {{ test }}</p>
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="output-error">
+                Error: <p> {{ error }}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
